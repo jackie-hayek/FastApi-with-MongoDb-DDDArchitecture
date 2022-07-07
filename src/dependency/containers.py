@@ -1,23 +1,23 @@
 from dependency_injector import containers, providers
 
 from src.application.contracts.queries.get_student_query.get_student_query import AbstractGetStudentByIdQuery
-from src.application.handlers.queries.get_student_query_handler.handler import GetStudentByIdQuery
+from src.application.handlers.queries.get_student_query.get_student_query_handler import GetStudentByIdQuery
 from src.domain.contracts.abstract_student_repository import AbstractStudentRepository
 from src.persistence.student_repository.student_repository import StudentRepository
 
 from src.application.contracts.commands.add_student_command.add_student_command import AbstractAddStudentCommand
-from src.application.handlers.commands.add_student_command_handler.handler import AddStudentCommand
+from src.application.handlers.commands.add_student_command.add_student_command_handler import AddStudentCommand
 
 from src.application.contracts.commands.delete_student_command.delete_student_command import \
     AbstractDeleteStudentByIdCommand
-from src.application.handlers.commands.delete_student_command_handler.handler import DeleteStudentByIdCommand
+from src.application.handlers.commands.delete_student_command.delete_student_command_handler import DeleteStudentByIdCommand
 
 from src.application.contracts.commands.update_student_command.update_student_command import \
     AbstractUpdateStudentCommand
-from src.application.handlers.commands.update_student_command_handler.handler import UpdateStudentCommand
+from src.application.handlers.commands.update_student_command.update_student_command_handler import UpdateStudentCommand
 
 from src.application.contracts.queries.get_all_students_query.get_all_students_query import AbstractGetAllStudentsQuery
-from src.application.handlers.queries.get_all_students_query_handler.handler import GetAllStudentsQuery
+from src.application.handlers.queries.get_all_students_query.get_all_students_query_handler import GetAllStudentsQuery
 
 
 class PersistenceContainer(containers.DeclarativeContainer):

@@ -3,6 +3,7 @@ from beanie import Document
 
 
 class Student(Document):
+    student_id: str
     first_name: str
     last_name: str
     enrollment_year: int

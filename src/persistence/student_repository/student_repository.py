@@ -4,6 +4,8 @@ from src.domain.contracts.abstract_student_repository import AbstractStudentRepo
 from src.domain.models.student_model import Student as StudentsModel, Student
 from typing import List, Union
 
+from src.exceptions.exceptions import RepositoryException
+
 student_collection = StudentsModel
 
 
@@ -25,7 +27,7 @@ class StudentRepository(AbstractStudentRepository):
         student_to_delete = await student_collection.find_one(Student.student_id == student_id)
 
         if student_to_delete is None:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Resource Not Found")
+            raise RepositoryException(message='Student Not Found')
         else:
             await student_to_delete.delete()
             return True
@@ -36,7 +38,9 @@ class StudentRepository(AbstractStudentRepository):
             field: value for field, value in des_body.items()
         }}
         student_to_update = await student_collection.find_one(Student.student_id == student_id)
-        if student_to_update:
+        if not student_to_update:
+            raise RepositoryException(message='Student Not Found')
+        else:
             await student_to_update.update(update_query)
             return student_to_update
-        return False
+
