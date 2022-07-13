@@ -1,5 +1,3 @@
-from abc import ABC
-from fastapi import HTTPException, status
 from src.domain.contracts.abstract_student_repository import AbstractStudentRepository
 from src.domain.models.student_model import Student as StudentsModel, Student
 from typing import List, Union
@@ -32,7 +30,7 @@ class StudentRepository(AbstractStudentRepository):
             await student_to_delete.delete()
             return True
 
-    async def update_student_data(self, student_id: str, studentx: dict) -> Union[bool, StudentsModel]:
+    async def update_student_data(self, student_id: str, studentx: dict):
         des_body = {k: v for k, v in studentx.items() if v is not None}
         update_query = {"$set": {
             field: value for field, value in des_body.items()
