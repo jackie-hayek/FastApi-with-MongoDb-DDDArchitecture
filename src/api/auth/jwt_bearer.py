@@ -2,6 +2,7 @@ from fastapi import Request, HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 from src.api.auth.jwt_handler import decode_token
+from src.infrastructure.firebase.authentication.login import refresh_token
 
 
 def verify_jwt(jwtoken: str) -> bool:
@@ -10,6 +11,8 @@ def verify_jwt(jwtoken: str) -> bool:
     payload = decode_token(jwtoken)
     if payload:
         isTokenValid = True
+    if None:
+        refresh_token()
     return isTokenValid
 
 
