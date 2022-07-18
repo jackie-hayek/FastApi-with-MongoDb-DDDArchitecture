@@ -11,13 +11,15 @@ if password == confirm_pass:
         auth.create_user_with_email_and_password(email, password)
         print("Success!")
         created = True
-    except:
+    except Exception as e:
         print("Email already exists")
+        raise e
 
 if created:
     try:
         data = {'email': email, 'password': password, 'active': True}
         db.child("users").push(data)
         print("User is added to the database")
-    except:
+    except Exception as e:
         print("User not added to the database")
+        raise e

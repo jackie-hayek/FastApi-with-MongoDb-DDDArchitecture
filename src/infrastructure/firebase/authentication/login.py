@@ -8,8 +8,8 @@ def admin_exists_query(email, password):
         id_token = user["idToken"]
         return token_response(id_token)
 
-    except:
-        raise Exception
+    except Exception as e:
+        raise e
 
 
 def refresh_token():

@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod, ABCMeta
-from src.domain.models.student_model import Student as StudentsModel
+
+from src.application.contracts.commands.add_student_command.add_student_command_request import AddStudentRequestModel
+from src.persistence.student_repository.student_model import Student as StudentsModel
 
 
 class AbstractStudentRepository(ABC):
@@ -14,7 +16,7 @@ class AbstractStudentRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def add_new_student(self, studentx: StudentsModel):
+    async def add_new_student(self, studentx: AddStudentRequestModel):
         raise NotImplementedError
 
     @abstractmethod

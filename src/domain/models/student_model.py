@@ -1,18 +1,14 @@
-from pydantic import EmailStr
-from beanie import Document
+from pydantic import BaseModel, EmailStr
 
 
-class Student(Document):
+class Student(BaseModel):
     student_id: str
     first_name: str
     last_name: str
-    enrollment_year: int
+    enrollment_year: str
     major: str
     email: EmailStr
 
-    class Settings:
-        name = "student"
-
     class Config:
         orm_mode = True
-        arbitrary_types_allowed = True
+

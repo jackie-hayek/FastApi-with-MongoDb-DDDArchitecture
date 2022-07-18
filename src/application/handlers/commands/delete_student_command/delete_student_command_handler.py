@@ -2,7 +2,7 @@ from src.application.contracts.commands.delete_student_command.delete_student_co
     AbstractDeleteStudentByIdCommand
 from src.domain.contracts.abstract_student_repository import AbstractStudentRepository
 import logging
-from src.exceptions.exceptions import RepositoryException
+from src.exceptions.exceptions import Exceptions
 
 
 class DeleteStudentByIdCommand(AbstractDeleteStudentByIdCommand):
@@ -15,7 +15,7 @@ class DeleteStudentByIdCommand(AbstractDeleteStudentByIdCommand):
             return deleted_student
             logging.info('Student deleted')
 
-        except RepositoryException as e:
+        except Exceptions as e:
             logging.error('Student not found')
             raise e
 

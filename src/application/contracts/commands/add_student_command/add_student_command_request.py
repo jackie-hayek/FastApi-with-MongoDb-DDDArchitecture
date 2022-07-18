@@ -1,13 +1,11 @@
-import uuid
-from http.client import HTTPException
-
-from pydantic import validator, EmailStr
 import re
+import uuid
 from datetime import date
-from beanie import Document
+
+from pydantic import validator, EmailStr, BaseModel
 
 
-class AddStudentRequestModel(Document):
+class AddStudentRequestModel(BaseModel):
     student_id: str = str(uuid.uuid4())
     first_name: str
     last_name: str
@@ -21,14 +19,14 @@ class AddStudentRequestModel(Document):
         if re.search(regex, v):
             return v
         else:
-            raise HTTPException(status_code=422, detail="Invalid Email")
+            raise ValueError("Email is not valid")
 
     @validator('enrollment_year')
     def check_enrollment_year(cls, v):
         today_date = date.today()
         current_year = int(today_date.strftime("%Y"))
         if v < current_year:
-            raise HTTPException(status_code=400, detail="Invalid Enrollment Year")
+            raise ValueError("Enrollment year is not valid")
         else:
             return v
 

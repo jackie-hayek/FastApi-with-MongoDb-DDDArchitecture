@@ -1,5 +1,3 @@
-from fastapi import HTTPException
-
 import logging
 
 from src.application.contracts.queries.get_student_query.get_student_query import AbstractGetStudentByIdQuery
@@ -12,9 +10,9 @@ class GetStudentByIdQuery(AbstractGetStudentByIdQuery):
         self.student_repository = student_repository
 
     def handle(self, student_id: str):
-        student = self.student_repository.get_student_by_id(student_id)
-        if not student:
+        try:
+            return self.student_repository.get_student_by_id(student_id)
+            logging.info('Student with the specified id is returned')
+        except Exception as e:
             logging.error('Student with the specified id is not found')
-            raise HTTPException(status_code=404, detail="Student not found")
-        logging.info('Student with the specified id is returned')
-        return student
+            raise e

@@ -10,6 +10,11 @@ class GetAllStudentsQuery(AbstractGetAllStudentsQuery):
         self.student_repository = student_repository
 
     def handle(self):
-        students = self.student_repository.get_students()
-        logging.info('Students list returned')
-        return students
+        try:
+            return self.student_repository.get_students()
+            logging.info('Students list returned')
+
+        except Exception as e:
+            logging.info('No Students List available')
+            raise e
+

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, status, HTTPException, Body
+from fastapi import APIRouter, HTTPException, Body
 
 from src.domain.models.admin_model import AdminSignIn
 from src.infrastructure.firebase.authentication.login import admin_exists_query
